@@ -294,12 +294,12 @@ def WRatio(s1, s2, force_ascii=True, full_process=True):
         ptser = partial_token_set_ratio(p1, p2, full_process=False) \
             * unbase_scale * partial_scale
 
-        return utils.intr(max(base, partial, ptsor, ptser))
+        return utils.intr(max(base, partial, ptser))
     else:
         '''tsor = token_sort_ratio(p1, p2, full_process=False) * unbase_scale'''
         tser = token_set_ratio(p1, p2, full_process=False) * unbase_scale
 
-        return utils.intr(max(base, tsor, tser))
+        return utils.intr(max(base, tser))
 
 
 def UWRatio(s1, s2, full_process=True):
