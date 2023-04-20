@@ -158,8 +158,8 @@ def _token_set(s1, s2, partial=True, force_ascii=True, full_process=True):
     else:
         ratio_func = ratio
 
-        if " " in sorted_sect:
-            return(ratio_func(combined_1to2, combined_2to1))
+    if " " in sorted_sect:
+        return(ratio_func(combined_1to2, combined_2to1))
     pairwise = [
         ratio_func(sorted_sect, combined_1to2),
         ratio_func(sorted_sect, combined_2to1),
