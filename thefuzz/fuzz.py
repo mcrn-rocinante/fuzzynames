@@ -295,7 +295,7 @@ def WRatio(s1, s2, force_ascii=True, full_process=True):
     try_partial = True
     unbase_scale = .95
     partial_scale = .90
-    fl_scale = .9°
+    fl_scale = .90
     base = ratio(p1, p2)
     # should we look at firstlast?
     if ((len(p1.split()) > 1) | (len(p2.split() > 1))):
