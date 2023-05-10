@@ -298,7 +298,7 @@ def WRatio(s1, s2, force_ascii=True, full_process=True):
     fl_scale = .90
     base = ratio(p1, p2)
     # should we look at firstlast?
-    if ((len(p1.split()) > 1) | (len(p2.split() > 1))):
+    if ((len(p1.split()) > 1) | (len(p2.split()) > 1)):
         base = max(base, first_last_ratio(p1, p2) * fl_scale)
     len_ratio = float(max(len(p1), len(p2))) / min(len(p1), len(p2))
     # if strings are similar length, don't use partials
