@@ -237,8 +237,12 @@ def first_last_ratio(s1, s2, force_ascii=True, full_process=True):
         return 0
     if not utils.validate_string(p2):
         return 0
-    p1 = p1.split()[0] + " " + p1.split[-1]
-    p2 = p2.split()[0] + " " + p2.split[-1]
+    tokens1 = p1.split()
+    tokens2 = p2.split()
+    if len(tokens1) > 1:
+        p1 = tokens1[0] + " " + tokens1[-1]
+    if len(tokens2) > 1:
+        p2 = tokens2[0] + " " + tokens2[-1]
 
     return ratio(p1, p2)
 # w is for weighted
