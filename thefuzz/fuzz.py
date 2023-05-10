@@ -225,7 +225,25 @@ def UQRatio(s1, s2, full_process=True):
     return QRatio(s1, s2, force_ascii=False, full_process=full_process)
 
 
+def first_last_ratio(s1, s2, force_ascii=True, full_process=True):
+    if full_process:
+        p1 = utils.full_process(s1, force_ascii=force_ascii)
+        p2 = utils.full_process(s2, force_ascii=force_ascii)
+    else:
+        p1 = s1
+        p2 = s2
+
+    if not utils.validate_string(p1):
+        return 0
+    if not utils.validate_string(p2):
+        return 0
+    p1 = p1.split()[0] + " " + p1.split[-1]
+    p2 = p2.split()[0] + " " + p2.split[-1]
+
+    return ratio(p1, p2)
 # w is for weighted
+
+
 def WRatio(s1, s2, force_ascii=True, full_process=True):
     """
     Return a measure of the sequences' similarity between 0 and 100, using different algorithms.
@@ -277,10 +295,12 @@ def WRatio(s1, s2, force_ascii=True, full_process=True):
     try_partial = True
     unbase_scale = .95
     partial_scale = .90
-
+    fl_scale = .9°
     base = ratio(p1, p2)
+    # should we look at firstlast?
+    if ((len(p1.split()) > 1) | (len(p2.split() > 1))):
+        base = max(base, first_last_ratio(p1, p2) * fl_scale)
     len_ratio = float(max(len(p1), len(p2))) / min(len(p1), len(p2))
-
     # if strings are similar length, don't use partials
     if len_ratio < 1.5:
         try_partial = False
@@ -295,7 +315,6 @@ def WRatio(s1, s2, force_ascii=True, full_process=True):
             * unbase_scale * partial_scale'''
         ptser = partial_token_set_ratio(p1, p2, full_process=False) \
             * unbase_scale * partial_scale
-
         return utils.intr(max(base, partial, ptser))
     else:
         '''tsor = token_sort_ratio(p1, p2, full_process=False) * unbase_scale'''
