@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import platform
 import warnings
-import difflib.SequenceMatcher as ogSequenceMatcher
+from difflib import SequenceMatcher as ogSequenceMatcher
 try:
     from .StringMatcher import StringMatcher as SequenceMatcher
 except ImportError:
