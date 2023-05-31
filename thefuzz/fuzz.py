@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import platform
 import warnings
-from difflib import SequenceMatcher as ogSequenceMatcher
 try:
     from .StringMatcher import StringMatcher as SequenceMatcher
 except ImportError:
@@ -44,10 +43,6 @@ def partial_ratio(s1, s2):
 
     m = SequenceMatcher(None, shorter, longer)
     blocks = m.get_matching_blocks()
-
-    # Adding this because it might create the best match
-
-    blocks.append(ogSequenceMatcher(None, shorter, longer).find_longest_match())
 
     # each block represents a sequence of matching characters in a string
     # of the form (idx_1, idx_2, len)
